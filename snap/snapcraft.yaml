@@ -1,0 +1,48 @@
+name: duolingo-desktop
+base: core22
+version: '4.0.1'
+license: GPL-3.0
+summary: Unofficial duolingo desktop app
+description: |
+  A unofficial desktop client for Duolingo
+
+architectures:
+  - build-on: amd64
+
+grade: stable
+confinement: strict
+compression: lzo
+
+plugs:
+  shmem:
+    interface: shared-memory
+    private: true
+
+apps:
+  duolingo-desktop:
+    command: dl-desktop --no-sandbox
+    desktop: meta/gui/duolingo-desktop.desktop
+    environment:
+      TMPDIR: $XDG_RUNTIME_DIR
+      GTK_USE_PORTAL: 1
+    extensions:
+      - gnome
+    plugs:
+      - audio-playback
+      - audio-record
+      - browser-support
+      - home
+      - network
+      - opengl
+      - screen-inhibit-control
+      - shmem
+      - system-observe
+      - unity7
+
+parts:
+  duolingo:
+    plugin: dump
+    source: https://github.com/hmlendea/dl-desktop/releases/download/v4.0.1/dl-desktop_${SNAPCRAFT_PROJECT_VERSION}_linux.zip
+    source-type: zip
+    prime:
+      - -chrome-sandbox
