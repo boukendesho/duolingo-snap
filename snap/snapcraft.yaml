@@ -41,7 +41,7 @@ apps:
 parts:
   duolingo:
     plugin: dump
-    source: https://github.com/hmlendea/dl-desktop/releases/download/v4.0.1/dl-desktop_${SNAPCRAFT_PROJECT_VERSION}_linux.zip
+    source: https://github.com/hmlendea/dl-desktop/releases/download/v${SNAPCRAFT_PROJECT_VERSION}/dl-desktop_${SNAPCRAFT_PROJECT_VERSION}_linux.zip
     source-type: zip
     prime:
       - -chrome-sandbox
