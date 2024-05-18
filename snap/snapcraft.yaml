@@ -36,6 +36,9 @@ apps:
       - opengl
       - shmem
       - screen-inhibit-control
+      - desktop
+      - desktop-legacy
+      - wayland
       - unity7
 
 parts:
