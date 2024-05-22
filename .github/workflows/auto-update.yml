@@ -1,0 +1,59 @@
+name: Check upstream if a new version release
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-snapcraft-yaml:
+    runs-on: ubuntu-latest
+    steps:
+      - name: fetch upstream latest tag
+        id: upstream
+        uses: oprypin/find-latest-tag@v1
+        with:
+          repository: hmlendea/dl-desktop
+          sort-tags: false
+
+      - name: modify upstream version
+        id: modified
+        run: |
+          upstream_version=${{ steps.upstream.outputs.tag }}
+          if [ -z $upstream_version ]; then
+            exit 1
+          else
+            # trim 'v' in tag name
+            modified_version=$(echo $upstream_version | tr -d 'v')
+            echo "version=$modified_version" >> $GITHUB_OUTPUT
+          fi
+
+      - name: show upstream version
+        run: echo "Upstream version is ${{ steps.modified.outputs.version }}"
+      
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+      
+      - name: get current version
+        id: current
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq '.version' 'snap/snapcraft.yaml'
+
+      - name: show current version
+        run: echo "Current version is ${{ steps.current.outputs.result }}"
+
+      - name: update version number
+        if: steps.modified.outputs.version != steps.current.outputs.result
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq -i '.version = "${{ steps.upstream.outputs.tag }}"' 'snap/snapcraft.yaml'
+          
+      - name: Commit changes
+        if: steps.modified.outputs.version != steps.current.outputs.result
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add .
+          git commit -m "update snapcraft.yaml to version ${{ steps.modified.outputs.version }}"
+          git push
