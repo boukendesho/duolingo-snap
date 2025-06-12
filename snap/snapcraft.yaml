@@ -1,6 +1,6 @@
 name: duolingo-desktop
 base: core22
-version: '4.0.3'
+version: '4.1.0'
 license: GPL-3.0
 summary: Unofficial duolingo desktop app
 description: |
