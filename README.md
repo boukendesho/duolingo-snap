@@ -1,7 +1,8 @@
 ## duolingo-desktop-snap
 [![duolingo-desktop](https://snapcraft.io/duolingo-desktop/badge.svg)](https://snapcraft.io/duolingo-desktop)
 
-[Upstream Project Link](https://github.com/hmlendea/dl-desktop) 
+## Upstream
+[![dl-desktop](https://img.shields.io/github/v/release/hmlendea/dl-desktop?logo=github)](https://github.com/hmlendea/dl-desktop)
 
 This is an unofficial Linux desktop client for Duolingo, that works as a wrapper around the official web app.
   
