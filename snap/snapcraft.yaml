@@ -1,9 +1,5 @@
 name: duolingo-desktop
-<<<<<<< HEAD
-base: core22
-=======
 base: core26
->>>>>>> a1422a3 (snap: migrate to core26 and fixed issue #1)
 version: '4.3.2'
 license: GPL-3.0
 summary: Unofficial duolingo desktop app
