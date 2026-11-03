@@ -17,7 +17,7 @@ plugs:
 apps:
   duolingo-desktop:
     command: dl-desktop --no-sandbox
-    desktop: meta/gui/duolingo-desktop.desktop
+    desktop: gui/duolingo-desktop.desktop
     environment:
       TMPDIR: $XDG_RUNTIME_DIR
       GTK_USE_PORTAL: 1
