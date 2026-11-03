@@ -1,12 +1,16 @@
 name: duolingo-desktop
+<<<<<<< HEAD
 base: core22
+=======
+base: core26
+>>>>>>> a1422a3 (snap: migrate to core26 and fixed issue #1)
 version: '4.3.2'
 license: GPL-3.0
 summary: Unofficial duolingo desktop app
 description: |
   A unofficial desktop client for Duolingo
-architectures:
-  - build-on: amd64
+platforms:
+  amd64:
 grade: stable
 confinement: strict
 compression: lzo
@@ -39,7 +43,7 @@ apps:
 parts:
   duolingo:
     plugin: dump
-    source: https://github.com/hmlendea/dl-desktop/releases/download/v${SNAPCRAFT_PROJECT_VERSION}/dl-desktop_${SNAPCRAFT_PROJECT_VERSION}_linux.zip
+    source: https://github.com/hmlendea/dl-desktop/releases/download/v${SNAPCRAFT_PROJECT_VERSION}/dl-desktop_${SNAPCRAFT_PROJECT_VERSION}_linux_x64.zip
     source-type: zip
     prime:
       - -chrome-sandbox
