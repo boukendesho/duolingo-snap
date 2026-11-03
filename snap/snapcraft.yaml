@@ -32,6 +32,7 @@ apps:
       - opengl
       - shmem
       - screen-inhibit-control
+      - upower-observe
       - desktop
       - desktop-legacy
       - wayland
